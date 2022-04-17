@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<HTML>
+
+<HEAD>
+  <TITLE>REPORTLE</TITLE>
+  <meta http-equiv="Content-Security-Policy" content="'self' 'unsafe-inline'">
+</HEAD>
+<STYLE>
+  A {
+    text-decoration: none;
+  }
+</STYLE>
+
+<BODY>
+  <style>
+    html,
+    body {
+      font-family: Candara;
+      overflow: auto;
+    }
+
+    .nextWords {
+      width: 25px;
+      height: 30px;
+      text-align: center;
+      border-radius: 3px;
+      border-style: solid;
+      border-width: 1px;
+      resize: none;
+      font-size: 17pt;
+    }
+
+    .dummy {
+      width: 25px;
+      height: 30px;
+      text-align: center;
+      border-radius: 3px;
+      border-style: solid;
+      border-width: 1px;
+      resize: none;
+      font-size: 17pt;
+      cursor: default;
+    }
+
+    .dummy:focus {
+      outline: none;
+      cursor: default;
+    }
+
+    .tooltip {
+      transition: 2s;
+      position: relative;
+      display: inline-block;
+      border-bottom: 1px dotted black;
+    }
+
+
+    .tooltip .tooltiptext {
+      visibility: hidden;
+      width: 250px;
+      background-color: white;
+      color: #fff;
+      text-align: center;
+      border-radius: 6px;
+      padding: 5px 0;
+      font-size: 8;
+      font-family: Candara;
+      border: 1px solid #000000;
+      color: black;
+
+      position: absolute;
+      top: -75px;
+      left: -10px;
+      z-index: 1;
+    }
+
+    .tooltip:hover .tooltiptext {
+      visibility: visible;
+
+    }
+
+    .nonRead:focus {
+      outline: none;
+      cursor: default;
+    }
+  </style>
+
+  <center>
+    <p tabindex="-1" id="messages"
+      style="color:#787c7e;font-size:300%;border: 0px solid #787c7e;border-radius:3px; margin:0; padding: 10px; width:fit-content;font-weight:bold">
+      REPORTLE<img src="line.jpg" width="400" height="2" style="display:block"></p>
+
+    <div id="the-word">
+      <label tabindex="-1" for="word" style="color:#6aaa64;">Today's word</label>
+      <br>
+      <input type="text"
+        style="text-align:center;background-color:white;font-size:14;border-radius:8px;font-family:Candara;border: 1px solid #555555;color:black;resize:none;"
+        autofocus id="word" rows="2" size="34" placeholder="Word">
+      <br>
+    </div>
+    <p style="font-size:70%">
+
+    </p>
+    <p id="messages1" style="color:#c9b458;font-size:130%;">Enter today's word first</p>
+    <p style="font-size:70%">
+
+    </p>
+  </center>
+  <button tabindex="-1" id="spacer0" style="background-color:white;width:95px;border-width:0;"></button>
+  <label tabindex="-1" for="102" id="yours"
+    style="font-variant-caps: all-small-caps; color:#6aaa64;border: 0px solid #787c7e;border-radius:3px; margin:0; padding-top:3px; padding-bottom:3px; padding-left:7px; padding-right:7px; font-size:120%; width:fit-content;">Your
+    Wordle
+    Solution</label>
+  <button tabindex="-1" id="spacer1" style="background-color:white;width:60px;border-width:0;"></button>
+  <label tabindex="-1" for="202"
+    style="font-variant-caps: all-small-caps;color:#6aaa64;border: 0px solid #787c7e;border-radius:3px; margin:0; padding-top:3px; padding-bottom:3px; padding-left:7px; padding-right:7px; font-size:120%; width:fit-content;">Top
+    Words to Try
+  </label>
+  <button tabindex="-1" id="spacer2" style="background-color:white;width:70px;border-width:0;"></button>
+  <label tabindex="-1" for="302" id="comp"
+    style="font-variant-caps: all-small-caps;color:#6aaa64;border: 0px solid #787c7e;border-radius:3px; margin:0; padding-top:3px; padding-bottom:3px; padding-left:7px; padding-right:7px; font-size:120%; width:fit-content;">
+    Optimal Solution</label>
+  <br>
+  <center>
+    <span>
+      <textarea type="text" tabindex="-1" id="100" class="nextWords nonRead"></textarea>
+      <textarea type="text" tabindex="-1" id="101" class="nextWords nonRead"></textarea>
+      <textarea type="text" tabindex="-1" id="102" class="nextWords nonRead"></textarea>
+      <textarea type="text" tabindex="-1" id="103" class="nextWords nonRead"></textarea>
+      <textarea type="text" tabindex="-1" id="104" class="nextWords nonRead"></textarea>
+      <textarea type="text" tabindex="-1" class="dummy" style="background-color:white;border-width:0"></textarea>
+      <textarea type="text" id="200" readonly class="nextWords"></textarea>
+      <textarea type="text" id="201" readonly class="nextWords"></textarea>
+      <textarea type="text" id="202" readonly class="nextWords"></textarea>
+      <textarea type="text" id="203" readonly class="nextWords"></textarea>
+      <textarea type="text" id="204" readonly class="nextWords"></textarea>
+      <textarea type="text" tabindex="-1" readonly class="dummy"
+        style="background-color:white;border-width:0"></textarea>
+      <textarea type="text" readonly tabindex="-1" id="300" class="nextWords nonRead"></textarea>
+      <textarea type="text" readonly tabindex="-1" id="301" class="nextWords nonRead"></textarea>
+      <textarea type="text" readonly tabindex="-1" id="302" class="nextWords nonRead"></textarea>
+      <textarea type="text" readonly tabindex="-1" id="303" class="nextWords nonRead"></textarea>
+      <textarea type="text" readonly tabindex="-1" id="304" class="nextWords nonRead"></textarea>
+      <br>
+      <textarea type="text" tabindex="-1" tabindex="-1" readonly id="110" class="nextWords nonRead"></textarea>
+      <textarea type="text" tabindex="-1" tabindex="-1" readonly id="111" class="nextWords nonRead"></textarea>
+      <textarea type="text" tabindex="-1" tabindex="-1" readonly id="112" class="nextWords nonRead"></textarea>
+      <textarea type="text" tabindex="-1" tabindex="-1" readonly id="113" class="nextWords nonRead"></textarea>
+      <textarea type="text" tabindex="-1" tabindex="-1" readonly id="114" class="nextWords nonRead"></textarea>
+      <textarea type="text" tabindex="-1" readonly class="dummy"
+        style="background-color:white;border-width:0"></textarea>
+      <textarea type="text" tabindex="-1" id="210" readonly class="nextWords"></textarea>
+      <textarea type="text" tabindex="-1" id="211" readonly class="nextWords"></textarea>
+      <textarea type="text" tabindex="-1" id="212" readonly class="nextWords"></textarea>
+      <textarea type="text" tabindex="-1" id="213" readonly class="nextWords"></textarea>
+      <textarea type="text" tabindex="-1" id="214" readonly class="nextWords"></textarea>
+      <textarea type="text" tabindex="-1" readonly class="dummy"
+        style="background-color:white;border-width:0"></textarea>
+      <textarea type="text" readonly tabindex="-1" id="310" class="nextWords nonRead"></textarea>
+      <textarea type="text" readonly tabindex="-1" id="311" class="nextWords nonRead"></textarea>
+      <textarea type="text" readonly tabindex="-1" id="312" class="nextWords nonRead"></textarea>
+      <textarea type="text" readonly tabindex="-1" id="313" class="nextWords nonRead"></textarea>
+      <textarea type="text" readonly tabindex="-1" id="314" class="nextWords nonRead"></textarea>
+      <br>
+      <textarea type="text" tabindex="-1" tabindex="-1" readonly id="120" class="nextWords nonRead"></textarea>
+      <textarea type="text" tabindex="-1" tabindex="-1" readonly id="121" class="nextWords nonRead"></textarea>
+      <textarea type="text" tabindex="-1" tabindex="-1" readonly id="122" class="nextWords nonRead"></textarea>
+      <textarea type="text" tabindex="-1" tabindex="-1" readonly id="123" class="nextWords nonRead"></textarea>
+      <textarea type="text" tabindex="-1" tabindex="-1" readonly id="124" class="nextWords nonRead"></textarea>
+      <textarea type="text" tabindex="-1" readonly class="dummy"
+        style="background-color:white;border-width:0"></textarea>
+      <textarea type="text" tabindex="-1" id="220" readonly class="nextWords"></textarea>
+      <textarea type="text" tabindex="-1" id="221" readonly class="nextWords"></textarea>
+      <textarea type="text" tabindex="-1" id="222" readonly class="nextWords"></textarea>
+      <textarea type="text" tabindex="-1" id="223" readonly class="nextWords"></textarea>
+      <textarea type="text" tabindex="-1" id="224" readonly class="nextWords"></textarea>
+      <textarea type="text" tabindex="-1" readonly class="dummy"
+        style="background-color:white;border-width:0"></textarea>
+      <textarea type="text" tabindex="-1" readonly tabindex="-1" id="320" class="nextWords nonRead"></textarea>
+      <textarea type="text" tabindex="-1" readonly tabindex="-1" id="321" class="nextWords nonRead"></textarea>
+      <textarea type="text" tabindex="-1" readonly tabindex="-1" id="322" class="nextWords nonRead"></textarea>
+      <textarea type="text" tabindex="-1" readonly tabindex="-1" id="323" class="nextWords nonRead"></textarea>
+      <textarea type="text" tabindex="-1" readonly tabindex="-1" id="324" class="nextWords nonRead"></textarea>
+      <br>
+      <textarea type="text" tabindex="-1" readonly id="130" class="nextWords nonRead"></textarea>
+      <textarea type="text" tabindex="-1" readonly id="131" class="nextWords nonRead"></textarea>
+      <textarea type="text" tabindex="-1" readonly id="132" class="nextWords nonRead"></textarea>
+      <textarea type="text" tabindex="-1" readonly id="133" class="nextWords nonRead"></textarea>
+      <textarea type="text" tabindex="-1" readonly id="134" class="nextWords nonRead"></textarea>
+      <textarea type="text" tabindex="-1" readonly class="dummy"
+        style="background-color:white;border-width:0"></textarea>
+      <textarea type="text" tabindex="-1" id="230" readonly class="nextWords"></textarea>
+      <textarea type="text" tabindex="-1" id="231" readonly class="nextWords"></textarea>
+      <textarea type="text" tabindex="-1" id="232" readonly class="nextWords"></textarea>
+      <textarea type="text" tabindex="-1" id="233" readonly class="nextWords"></textarea>
+      <textarea type="text" tabindex="-1" id="234" readonly class="nextWords"></textarea>
+      <textarea type="text" tabindex="-1" readonly class="dummy"
+        style="background-color:white;border-width:0"></textarea>
+      <textarea type="text" readonly tabindex="-1" id="330" class="nextWords nonRead"></textarea>
+      <textarea type="text" readonly tabindex="-1" id="331" class="nextWords nonRead"></textarea>
+      <textarea type="text" readonly tabindex="-1" id="332" class="nextWords nonRead"></textarea>
+      <textarea type="text" readonly tabindex="-1" id="333" class="nextWords nonRead"></textarea>
+      <textarea type="text" readonly tabindex="-1" id="334" class="nextWords nonRead"></textarea>
+      <br>
+      <textarea type="text" tabindex="-1" readonly id="140" class="nextWords nonRead"></textarea>
+      <textarea type="text" tabindex="-1" readonly id="141" class="nextWords nonRead"></textarea>
+      <textarea type="text" tabindex="-1" readonly id="142" class="nextWords nonRead"></textarea>
+      <textarea type="text" tabindex="-1" readonly id="143" class="nextWords nonRead"></textarea>
+      <textarea type="text" tabindex="-1" readonly id="144" class="nextWords nonRead"></textarea>
+      <textarea type="text" tabindex="-1" readonly class="dummy"
+        style="background-color:white;border-width:0"></textarea>
+      <textarea type="text" tabindex="-1" id="240" readonly class="nextWords"></textarea>
+      <textarea type="text" tabindex="-1" id="241" readonly class="nextWords"></textarea>
+      <textarea type="text" tabindex="-1" id="242" readonly class="nextWords"></textarea>
+      <textarea type="text" tabindex="-1" id="243" readonly class="nextWords"></textarea>
+      <textarea type="text" tabindex="-1" id="244" readonly class="nextWords"></textarea>
+      <textarea type="text" tabindex="-1" readonly class="dummy"
+        style="background-color:white;border-width:0"></textarea>
+      <textarea type="text" readonly tabindex="-1" id="340" class="nextWords nonRead"></textarea>
+      <textarea type="text" readonly tabindex="-1" id="341" class="nextWords nonRead"></textarea>
+      <textarea type="text" readonly tabindex="-1" id="342" class="nextWords nonRead"></textarea>
+      <textarea type="text" readonly tabindex="-1" id="343" class="nextWords nonRead"></textarea>
+      <textarea type="text" readonly tabindex="-1" id="344" class="nextWords nonRead"></textarea>
+      <br>
+      <textarea type="text" tabindex="-1" readonly id="150" class="nextWords nonRead"></textarea>
+      <textarea type="text" tabindex="-1" readonly id="151" class="nextWords nonRead"></textarea>
+      <textarea type="text" tabindex="-1" readonly id="152" class="nextWords nonRead"></textarea>
+      <textarea type="text" tabindex="-1" readonly id="153" class="nextWords nonRead"></textarea>
+      <textarea type="text" tabindex="-1" readonly id="154" class="nextWords nonRead"></textarea>
+      <textarea type="text" tabindex="-1" readonly class="dummy"
+        style="background-color:white;border-width:0"></textarea>
+      <textarea type="text" tabindex="-1" id="250" readonly class="nextWords"></textarea>
+      <textarea type="text" tabindex="-1" id="251" readonly class="nextWords"></textarea>
+      <textarea type="text" tabindex="-1" id="252" readonly class="nextWords"></textarea>
+      <textarea type="text" tabindex="-1" id="253" readonly class="nextWords"></textarea>
+      <textarea type="text" tabindex="-1" id="254" readonly class="nextWords"></textarea>
+      <textarea type="text" tabindex="-1" readonly class="dummy"
+        style="background-color:white;border-width:0"></textarea>
+      <textarea type="text" readonly tabindex="-1" id="350" class="nextWords nonRead"></textarea>
+      <textarea type="text" readonly tabindex="-1" id="351" class="nextWords nonRead"></textarea>
+      <textarea type="text" readonly tabindex="-1" id="352" class="nextWords nonRead"></textarea>
+      <textarea type="text" readonly tabindex="-1" id="353" class="nextWords nonRead"></textarea>
+      <textarea type="text" readonly tabindex="-1" id="354" class="nextWords nonRead"></textarea>
+      <br>
+    </span>
+    <br>
+
+    </div>
+
+    <button type="text" id="solve"
+      style="font-variant-caps: all-small-caps;background-color:white;color:#6aaa64;width:180px;height:25px;font-size:14;cursor:pointer;border-radius:8px;font-family:Candara;border: 2px solid #787c7e;">Show
+      Solution</button>
+    <button type="text" id="clear"
+      style="font-variant-caps: all-small-caps;background-color:white;color:#6aaa64;width:180px;height:25px;font-size:14;cursor:pointer;border-radius:8px;font-family:Candara;border: 2px solid #787c7e;">Reset</button>
+   
+      <p id="messages3" style="color:#6aaa64; border-radius:3px; border: solid 2px; padding:10px; width: 700px;text-align:left"> FEEDBACK
+    </p>
+  </center>
+
+
+  <script src="Wordle.js">
+  </script>
+
+</BODY>
+
+</HTML>

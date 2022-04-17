@@ -1,0 +1,12 @@
+{
+  "name": "Reportle - a Wordle Tool",
+  "description": "A tool that provides feedback on Wordle strategy",
+  "version": "2.0.1",
+  "action": {
+    "default_popup": "Wordle.html"
+  },
+  "icons": {
+    "128": "icon128.png"
+  },
+  "manifest_version": 3
+}
